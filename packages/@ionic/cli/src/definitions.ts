@@ -54,6 +54,13 @@ export interface CordovaPackageJson extends PackageJson {
   };
 }
 
+export interface CordovaAndroidBuildOutputEntry {
+  outputType: {
+    type: string;
+  };
+  path: string;
+}
+
 export interface Runner<T extends object, U> {
   run(options: T): Promise<U>;
 }
@@ -253,6 +260,8 @@ export interface ProjectPersonalizationDetails {
   version?: string;
   description?: string;
   themeColor?: string;
+  appIcon?: Buffer;
+  splash?: Buffer;
 }
 
 export interface IProjectConfig {
@@ -285,6 +294,7 @@ export interface IProject {
 
   getDocsUrl(): Promise<string>;
   getSourceDir(sourceRoot?: string): Promise<string>;
+  getDefaultDistDir(): Promise<string>;
   getDistDir(): Promise<string>;
   getInfo(): Promise<InfoItem[]>;
   detected(): Promise<boolean>;
